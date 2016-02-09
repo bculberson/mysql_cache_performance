@@ -1,0 +1,5 @@
+FROM mysql:latest
+
+COPY ./mysql/master.cnf /etc/mysql/my.cnf
+COPY ./mysql/master.sql /docker-entrypoint-initdb.d/master.sql
+

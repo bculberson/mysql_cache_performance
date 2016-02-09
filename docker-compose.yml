@@ -1,0 +1,24 @@
+
+mysql-master:
+  build: .
+  dockerfile: ./mysql/Dockerfile.master
+  expose:
+    - "3306"
+  environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_DATABASE=cached_db
+    - MYSQL_USER=user
+    - MYSQL_PASSWORD=pass
+
+mysql-slave:
+  build: .
+  dockerfile: ./mysql/Dockerfile.slave
+  links:
+    - mysql-master
+  expose:
+    - "3306"
+  environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_DATABASE=cached_db
+    - MYSQL_USER=user
+    - MYSQL_PASSWORD=pass
