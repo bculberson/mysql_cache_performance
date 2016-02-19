@@ -18,7 +18,7 @@ func randSeq(n int) string {
     return string(b)
 }
 
-func BenchmarkGet(b *testing.B) {
+func BenchmarkMySqlGet(b *testing.B) {
     var id int64
     db, err := sql.Open("mysql", "user:pass@tcp(mysql-master:3306)/cached_db?autocommit=true")
     if err != nil {

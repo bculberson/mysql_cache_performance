@@ -23,12 +23,18 @@ mysql-slave:
     - MYSQL_USER=user
     - MYSQL_PASSWORD=pass
 
+redis:
+  image: redis
+  expose:
+    - "6379"
+
 bench:
   image: golang:1.6-onbuild
   links:
     - mysql-master
     - mysql-slave
+    - redis
   volumes:
     - .:/code
   working_dir: /code
-  command: bash -c "export GOPATH=/tmp && go get github.com/go-sql-driver/mysql && go test -bench=."
+  command: bash -c "export GOPATH=/tmp && go get github.com/go-sql-driver/mysql && go get gopkg.in/redis.v3 && go test -bench=."
