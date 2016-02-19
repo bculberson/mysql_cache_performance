@@ -22,3 +22,13 @@ mysql-slave:
     - MYSQL_DATABASE=cached_db
     - MYSQL_USER=user
     - MYSQL_PASSWORD=pass
+
+bench:
+  image: golang:1.6-onbuild
+  links:
+    - mysql-master
+    - mysql-slave
+  volumes:
+    - .:/code
+  working_dir: /code
+  command: bash -c "export GOPATH=/tmp && go get github.com/go-sql-driver/mysql && go test -bench=."

@@ -1,4 +1,5 @@
 FROM mysql:latest
 
 COPY ./mysql/slave.cnf /etc/mysql/my.cnf
+COPY ./mysql/master.sql /docker-entrypoint-initdb.d/master.sql
 COPY ./mysql/slave.sql /docker-entrypoint-initdb.d/slave.sql

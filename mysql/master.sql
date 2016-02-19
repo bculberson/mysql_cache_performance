@@ -1,7 +1,4 @@
-CREATE USER replicant@*;
-GRANT REPLICATION SLAVE ON *.* TO replicant@* IDENTIFIED BY 'pass';
-
-CREATE TABLE cached (
+CREATE TABLE cached_db.cached (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 data VARCHAR(30) NOT NULL
-);
+)
